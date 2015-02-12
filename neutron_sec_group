@@ -117,7 +117,9 @@ def main():
             region_name=dict(default=None),
             rules=dict(default=None),
             tenant_name=dict(required=False),
-            state=dict(default="present", choices=['present', 'absent'])
+            state=dict(default="present", choices=['present', 'absent']),
+            token=dict(required=False),
+            endpoint=dict(required=False)
         ),
         supports_check_mode=True
     )
@@ -354,7 +356,9 @@ def _get_network_client(module_params):
         password=module_params.get('login_password'),
         tenant_name=module_params.get('login_tenant_name'),
         auth_url=module_params.get('auth_url'),
-        region_name=module_params.get('region_name'))
+        region_name=module_params.get('region_name'),
+        token=module_params.get('token'), 
+        endpoint=module_params.get('endpoint'))
 
     return client
 
@@ -370,7 +374,9 @@ def _get_identity_client(module_params):
         password=module_params.get('login_password'),
         tenant_name=module_params.get('login_tenant_name'),
         auth_url=module_params.get('auth_url'),
-        region_name=module_params.get('region_name'))
+        region_name=module_params.get('region_name'),
+        token=module_params.get('token'), 
+        endpoint=module_params.get('endpoint'))
 
     return client
 
